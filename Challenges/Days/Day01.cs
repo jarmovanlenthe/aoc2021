@@ -1,4 +1,5 @@
 using System.Linq;
+using Challenges.Util;
 
 namespace Challenges.Days
 {
@@ -11,7 +12,7 @@ namespace Challenges.Days
 
         public override int Part2(int[] puzzleInput)
         {
-            var sums = puzzleInput.Zip(puzzleInput[1..], (x, y) => x + y).Zip(puzzleInput[2..], (x, y) => x + y).ToArray();
+            var sums = puzzleInput.ZipThree(puzzleInput[1..], puzzleInput[2..], (x, y, z) => x + y + z).ToArray();
             return sums.Zip(sums[1..], (x, y) => x < y).Count(x => x);
         }
 
