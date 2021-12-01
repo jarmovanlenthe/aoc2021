@@ -6,13 +6,13 @@ namespace Challenges.Days
     {
         public override int Part1(int[] puzzleInput)
         {
-            return puzzleInput.Zip(puzzleInput[1..]).Select(x => x.First < x.Second).Count(x => x);
+            return puzzleInput.Zip(puzzleInput[1..], (x, y) => x < y).Count(x => x);
         }
 
         public override int Part2(int[] puzzleInput)
         {
-            var sums = puzzleInput.Zip(puzzleInput[1..]).Zip(puzzleInput[2..]).Select(x => x.First.First + x.First.Second + x.Second).ToArray();
-            return sums.Zip(sums[1..]).Select(x => x.First < x.Second).Count(x => x);
+            var sums = puzzleInput.Zip(puzzleInput[1..], (x, y) => x + y).Zip(puzzleInput[2..], (x, y) => x + y).ToArray();
+            return sums.Zip(sums[1..], (x, y) => x < y).Count(x => x);
         }
 
         public override int[] PreprocessData(string[] puzzleInput)
