@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Challenges.Util
 {
@@ -15,6 +16,13 @@ namespace Challenges.Util
                 while (e1.MoveNext() && e2.MoveNext() && e3.MoveNext())
                     yield return func(e1.Current, e2.Current, e3.Current);
             }
+        }
+
+        public static IEnumerable<IEnumerable<T>> Transpose<T>(this IEnumerable<IEnumerable<T>> l)
+        {
+            return l.SelectMany(inner => inner.Select((item, index) => new { item, index }))
+                .GroupBy(i => i.index, i => i.item)
+                .Select(g => g.ToList());
         }
     }
 }
