@@ -12,7 +12,7 @@ namespace Challenges.Days
             (1, 0)
         };
 
-        private List<(int, int)> FindLowestPoints(Dictionary<(int, int), int> grid)
+        private static IEnumerable<(int, int)> FindLowestPoints(Dictionary<(int, int), int> grid)
         {
             var lowestPoints = new List<(int, int)>();
             foreach (var (pX, pY) in grid.Keys)
@@ -42,7 +42,7 @@ namespace Challenges.Days
             return lowestPoints.Select(x => puzzleInput[x] + 1).Sum();
         }
 
-        private HashSet<(int, int)> FindBasin(Dictionary<(int, int), int> grid, (int, int) point)
+        private static HashSet<(int, int)> FindBasin(IReadOnlyDictionary<(int, int), int> grid, (int, int) point)
         {
             var basin = new HashSet<(int, int)>();
             var seen = new HashSet<(int, int)>();
