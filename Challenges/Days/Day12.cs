@@ -1,5 +1,3 @@
-using System.Resources;
-
 namespace Challenges.Days;
 
 public class Day12 : Day<List<Day12.Cave>, int>
